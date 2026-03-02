@@ -7,7 +7,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
 :root {
   --bg: #f5f2ee;
   --surface: #ffffff;
@@ -18,136 +19,382 @@
   --accent: #2a5c3f;
   --accent-light: #eef4f0;
 }
-body { background:var(--bg); color:var(--ink); font-family:'DM Sans',sans-serif; min-height:100vh; }
-.page { max-width:420px; margin:0 auto; padding:48px 24px 80px; }
 
-header { margin-bottom:36px; }
-.eyebrow { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--ink3); margin-bottom:10px; }
-h1 { font-family:'Instrument Serif',serif; font-size:1.9rem; font-weight:400; line-height:1.2; margin-bottom:4px; }
-h1 em { font-style:italic; color:var(--accent); }
-.location { font-size:13px; color:var(--ink3); }
-hr { border:none; border-top:1px solid var(--line); margin:28px 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+}
 
-.label { font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--ink3); margin-bottom:12px; }
+.page {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
 
-.amount-row { display:flex; align-items:baseline; gap:6px; margin-bottom:20px; }
-.rp { font-family:'Instrument Serif',serif; font-size:1.4rem; color:var(--ink2); }
+/* ── Header ── */
+header { margin-bottom: 36px; }
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.9rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.location {
+  font-size: 13px;
+  color: var(--ink3);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 28px 0;
+}
+
+/* ── Form ── */
+.label {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-bottom: 12px;
+}
+
+.amount-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.rp {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.4rem;
+  color: var(--ink2);
+  flex-shrink: 0;
+}
+
 #amountInput {
-  font-family:'Instrument Serif',serif; font-size:2.6rem; font-weight:400;
-  color:var(--ink); background:none; border:none; outline:none; width:100%;
-  border-bottom:2px solid var(--ink); padding-bottom:4px; line-height:1;
+  font-family: 'Instrument Serif', serif;
+  font-size: 2.6rem;
+  font-weight: 400;
+  color: var(--ink);
+  background: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 4px;
+  line-height: 1;
 }
-#amountInput::placeholder { color:var(--line); }
+#amountInput::placeholder { color: var(--line); }
 
-.presets { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:24px; }
-.preset {
-  background:none; border:1px solid var(--line); color:var(--ink2);
-  font-family:'DM Sans',sans-serif; font-size:13px; padding:6px 14px;
-  border-radius:20px; cursor:pointer; transition:all 0.15s;
+.presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 24px;
 }
-.preset:hover { border-color:var(--accent); color:var(--accent); }
-.preset.on { background:var(--accent); border-color:var(--accent); color:white; }
+
+.preset {
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--ink2);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.preset:hover { border-color: var(--accent); color: var(--accent); }
+.preset.on { background: var(--accent); border-color: var(--accent); color: white; }
 
 #noteInput {
-  width:100%; background:none; border:none; border-bottom:1px solid var(--line);
-  color:var(--ink); font-family:'DM Sans',sans-serif; font-size:0.95rem;
-  padding:8px 0; outline:none; transition:border-color 0.2s; margin-bottom:28px;
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  padding: 8px 0;
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 28px;
 }
-#noteInput::placeholder { color:var(--ink3); }
-#noteInput:focus { border-bottom-color:var(--ink); }
+#noteInput::placeholder { color: var(--ink3); }
+#noteInput:focus { border-bottom-color: var(--ink); }
 
 .btn-main {
-  width:100%; background:var(--ink); color:white; font-family:'DM Sans',sans-serif;
-  font-size:15px; font-weight:500; padding:15px; border:none; border-radius:12px;
-  cursor:pointer; transition:background 0.15s;
+  width: 100%;
+  background: var(--ink);
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.15s;
 }
-.btn-main:hover { background:var(--accent); }
+.btn-main:hover { background: var(--accent); }
+.btn-main:active { transform: scale(0.99); }
 
-#resultSection { display:none; margin-top:32px; }
-.qr-block { background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:28px; text-align:center; }
-#qrCanvas { display:inline-block; margin-bottom:16px; }
-.qr-amount { font-family:'Instrument Serif',serif; font-size:1.8rem; color:var(--ink); margin-bottom:4px; }
-.qr-meta { font-size:13px; color:var(--ink3); line-height:1.6; }
-.qr-note { display:inline-block; margin-top:8px; font-size:12px; background:var(--accent-light); color:var(--accent); border-radius:20px; padding:3px 12px; }
+/* ── Result ── */
+#resultSection { display: none; margin-top: 32px; }
 
-.action-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px; }
+.qr-block {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 28px;
+  text-align: center;
+}
+
+#qrCanvas { display: inline-block; margin-bottom: 16px; }
+
+.qr-amount {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.8rem;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.qr-meta { font-size: 13px; color: var(--ink3); }
+
+.qr-note {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 12px;
+  background: var(--accent-light);
+  color: var(--accent);
+  border-radius: 20px;
+  padding: 3px 12px;
+}
+
+.action-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 14px;
+}
+
 .btn-outline {
-  background:none; border:1px solid var(--line); color:var(--ink2);
-  font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500;
-  padding:11px; border-radius:10px; cursor:pointer; transition:all 0.15s;
-  display:flex; align-items:center; justify-content:center; gap:6px;
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--ink2);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 11px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
-.btn-outline:hover { border-color:var(--ink); color:var(--ink); }
-.btn-share { grid-column:1/-1; background:var(--accent); border-color:var(--accent); color:white; font-size:14px; padding:14px; }
-.btn-share:hover { background:#1e4530; border-color:#1e4530; color:white; }
+.btn-outline:hover { border-color: var(--ink); color: var(--ink); }
 
-/* Modal */
+.btn-share {
+  grid-column: 1 / -1;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+  font-size: 14px;
+  padding: 14px;
+}
+.btn-share:hover { background: #1e4530; border-color: #1e4530; color: white; }
+
+/* ── Share Modal ── */
 .modal-bg {
-  position:fixed; inset:0; z-index:50;
-  background:rgba(26,24,20,0.5); backdrop-filter:blur(4px);
-  display:none; align-items:flex-end; justify-content:center;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(26, 24, 20, 0.5);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
 }
-.modal-bg.show { display:flex; }
+.modal-bg.show { display: flex; }
+
 .modal {
-  background:var(--surface); width:100%; max-width:480px;
-  border-radius:20px 20px 0 0; padding:24px 24px 40px;
-  animation:slideUp 0.22s ease;
+  background: var(--surface);
+  width: 100%;
+  max-width: 480px;
+  border-radius: 20px 20px 0 0;
+  padding: 24px 24px 40px;
+  animation: slideUp 0.22s ease;
 }
-@keyframes slideUp { from{transform:translateY(30px);opacity:0} to{transform:translateY(0);opacity:1} }
-.modal-handle { width:36px; height:4px; background:var(--line); border-radius:2px; margin:0 auto 20px; }
-.modal-title { font-family:'Instrument Serif',serif; font-size:1.2rem; margin-bottom:2px; }
-.modal-sub { font-size:12px; color:var(--ink3); margin-bottom:20px; }
 
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.modal-handle {
+  width: 36px;
+  height: 4px;
+  background: var(--line);
+  border-radius: 2px;
+  margin: 0 auto 20px;
+}
+
+.modal-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.2rem;
+  margin-bottom: 2px;
+}
+
+.modal-sub {
+  font-size: 12px;
+  color: var(--ink3);
+  margin-bottom: 20px;
+}
+
+/* Preview card inside modal */
 .preview-card {
-  background:var(--bg); border:1px solid var(--line); border-radius:12px;
-  padding:16px; display:flex; gap:14px; align-items:center; margin-bottom:20px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 20px;
 }
-.preview-qr { background:white; padding:8px; border-radius:8px; flex-shrink:0; }
-.preview-info { flex:1; }
-.preview-amount { font-family:'Instrument Serif',serif; font-size:1.3rem; margin-bottom:2px; }
-.preview-name { font-size:12px; color:var(--ink3); line-height:1.5; }
-.preview-note-tag { display:inline-block; margin-top:5px; font-size:11px; background:var(--accent-light); color:var(--accent); border-radius:20px; padding:2px 10px; }
 
-.share-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:14px; }
-.share-opt {
-  display:flex; flex-direction:column; align-items:center; gap:5px;
-  cursor:pointer; padding:8px 4px; border-radius:10px; border:none; background:none;
-  transition:background 0.15s;
+.preview-qr {
+  background: white;
+  padding: 8px;
+  border-radius: 8px;
+  flex-shrink: 0;
 }
-.share-opt:hover { background:var(--bg); }
-.share-icon { width:46px; height:46px; border-radius:13px; display:flex; align-items:center; justify-content:center; font-size:21px; }
-.share-label { font-size:11px; color:var(--ink2); font-family:'DM Sans',sans-serif; }
 
-.btn-native {
-  width:100%; background:var(--ink); color:white; font-family:'DM Sans',sans-serif;
-  font-size:14px; font-weight:500; padding:14px; border:none; border-radius:12px; cursor:pointer;
-  transition:background 0.15s;
+.preview-info { flex: 1; }
+
+.preview-amount {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.3rem;
+  margin-bottom: 2px;
 }
-.btn-native:hover { background:var(--accent); }
 
+.preview-name {
+  font-size: 12px;
+  color: var(--ink3);
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+.preview-note-tag {
+  display: inline-block;
+  font-size: 11px;
+  background: var(--accent-light);
+  color: var(--accent);
+  border-radius: 20px;
+  padding: 2px 10px;
+  margin-bottom: 4px;
+}
+
+.reminder-tag {
+  display: inline-block;
+  font-size: 11px;
+  background: #fef3e2;
+  color: #b45309;
+  border-radius: 20px;
+  padding: 2px 10px;
+}
+
+/* Single share button */
+.btn-share-main {
+  width: 100%;
+  background: var(--ink);
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+  margin-bottom: 10px;
+}
+.btn-share-main:hover { background: var(--accent); }
+
+.btn-save-only {
+  width: 100%;
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--ink2);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn-save-only:hover { border-color: var(--ink); color: var(--ink); }
+
+/* ── Toast ── */
 .toast {
-  position:fixed; bottom:24px; left:50%;
-  transform:translateX(-50%) translateY(60px);
-  background:var(--ink); color:white; font-size:13px;
-  padding:10px 20px; border-radius:24px; transition:transform 0.25s ease;
-  z-index:999; white-space:nowrap;
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(60px);
+  background: var(--ink);
+  color: white;
+  font-size: 13px;
+  padding: 10px 20px;
+  border-radius: 24px;
+  transition: transform 0.25s ease;
+  z-index: 999;
+  white-space: nowrap;
 }
-.toast.show { transform:translateX(-50%) translateY(0); }
+.toast.show { transform: translateX(-50%) translateY(0); }
 </style>
 </head>
 <body>
+
 <div class="page">
+
   <header>
     <p class="eyebrow">Generator QRIS Dinamis</p>
     <h1><em>Asep Prayogi</em></h1>
-    <p class="location">Edukasi · Simalungun</p>
+    <p class="location">Simalungun</p>
   </header>
+
   <hr>
+
   <p class="label">Nominal</p>
   <div class="amount-row">
     <span class="rp">Rp</span>
-    <input id="amountInput" type="text" placeholder="0" inputmode="numeric" oninput="formatAmount(this)" autocomplete="off">
+    <input id="amountInput" type="text" placeholder="0" inputmode="numeric"
+      oninput="formatAmount(this)" autocomplete="off">
   </div>
+
   <div class="presets">
     <button class="preset" onclick="setAmount(5000)">5.000</button>
     <button class="preset" onclick="setAmount(10000)">10.000</button>
@@ -158,24 +405,27 @@ hr { border:none; border-top:1px solid var(--line); margin:28px 0; }
     <button class="preset" onclick="setAmount(150000)">150.000</button>
     <button class="preset" onclick="setAmount(200000)">200.000</button>
   </div>
+
   <p class="label">Catatan</p>
-  <input id="noteInput" type="text" placeholder="Pembayaran untuk apa...">
+  <input id="noteInput" type="text" placeholder="Untuk pembayaran apa...">
+
   <button class="btn-main" onclick="generate()">Buat QRIS</button>
 
+  <!-- Result -->
   <div id="resultSection">
     <hr>
     <div class="qr-block">
       <div id="qrCanvas"></div>
       <div class="qr-amount" id="displayAmount"></div>
-      <div class="qr-meta">Asep Prayogi · Simalungun</div>
+      <div class="qr-meta">Asep Prayogi</div>
       <div class="qr-note" id="displayNote" style="display:none"></div>
     </div>
     <div class="action-row">
-      <button class="btn-outline btn-share" onclick="openModal()">↑ Bagikan</button>
-      <button class="btn-outline" onclick="downloadQR()">↓ Simpan</button>
-      <button class="btn-outline" onclick="copyString()">⎘ Copy String</button>
+      <button class="btn-outline btn-share" onclick="openModal()">&#8593; Bagikan</button>
+      <button class="btn-outline" onclick="downloadQR()">&#8595; Simpan</button>
     </div>
   </div>
+
 </div>
 
 <!-- Share Modal -->
@@ -183,276 +433,360 @@ hr { border:none; border-top:1px solid var(--line); margin:28px 0; }
   <div class="modal">
     <div class="modal-handle"></div>
     <p class="modal-title">Bagikan QRIS</p>
-    <p class="modal-sub">Pilih cara berbagi</p>
+    <p class="modal-sub">Kirim ke siapa yang perlu membayar</p>
+
     <div class="preview-card">
-      <div class="preview-qr"><div id="previewQR"></div></div>
+      <div class="preview-qr">
+        <div id="previewQR"></div>
+      </div>
       <div class="preview-info">
         <div class="preview-amount" id="previewAmount"></div>
-        <div class="preview-name">Asep Prayogi<br>Edukasi · Simalungun</div>
+        <div class="preview-name">Asep Prayogi</div>
         <div class="preview-note-tag" id="previewNote" style="display:none"></div>
+        <div class="reminder-tag">&#9200; Harap segera dibayar</div>
       </div>
     </div>
-    <div class="share-grid">
-      <button class="share-opt" onclick="shareToApp('whatsapp')">
-        <div class="share-icon" style="background:#e8f8ef">💬</div>
-        <span class="share-label">WhatsApp</span>
-      </button>
-      <button class="share-opt" onclick="shareToApp('telegram')">
-        <div class="share-icon" style="background:#e8f3fd">✈️</div>
-        <span class="share-label">Telegram</span>
-      </button>
-      <button class="share-opt" onclick="shareToApp('download')">
-        <div class="share-icon" style="background:#f0ede8">🖼️</div>
-        <span class="share-label">Simpan</span>
-      </button>
-      <button class="share-opt" onclick="shareToApp('copy')">
-        <div class="share-icon" style="background:#f0ede8">⎘</div>
-        <span class="share-label">Salin</span>
-      </button>
-    </div>
-    <button class="btn-native" onclick="nativeShare()">Bagikan ke aplikasi lain…</button>
+
+    <button class="btn-share-main" onclick="doShare()">&#8593; Bagikan ke...</button>
+    <button class="btn-save-only" onclick="saveOnly()">&#8595; Simpan Gambar</button>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
+// ── QRIS String statis milik Asep Prayogi ─────────────────
 const STATIC_QRIS = '00020101021126610014COM.GO-JEK.WWW01189360091438606885270210G8606885270303UMI51440014ID.CO.QRIS.WWW0215ID10254352827810303UMI5204829953033605802ID5921ASEP PRAYOGI, Edukasi6010SIMALUNGUN61052116162070703A016304C8F2';
+
 let generatedString = null;
 
+// ── CRC-16/CCITT ──────────────────────────────────────────
 function crc16(str) {
   let crc = 0xFFFF;
   for (let i = 0; i < str.length; i++) {
     crc ^= str.charCodeAt(i) << 8;
-    for (let j = 0; j < 8; j++) { crc = (crc & 0x8000) ? ((crc<<1)^0x1021) : (crc<<1); crc &= 0xFFFF; }
+    for (let j = 0; j < 8; j++) {
+      crc = (crc & 0x8000) ? ((crc << 1) ^ 0x1021) : (crc << 1);
+      crc &= 0xFFFF;
+    }
   }
-  return crc.toString(16).toUpperCase().padStart(4,'0');
+  return crc.toString(16).toUpperCase().padStart(4, '0');
 }
 
+// ── Parse EMV TLV ─────────────────────────────────────────
 function parseEMV(qr) {
-  const r = {}; let i = 0;
-  while (i < qr.length-4) {
-    const tag = qr.substring(i,i+2), len = parseInt(qr.substring(i+2,i+4),10);
+  const result = {};
+  let i = 0;
+  while (i < qr.length - 4) {
+    const tag = qr.substring(i, i + 2);
+    const len = parseInt(qr.substring(i + 2, i + 4), 10);
     if (isNaN(len)) break;
-    r[tag] = qr.substring(i+4,i+4+len); i += 4+len;
+    result[tag] = qr.substring(i + 4, i + 4 + len);
+    i += 4 + len;
   }
-  return r;
+  return result;
 }
 
-function buildEMV(f) {
-  const O = ['00','01','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','51','52','53','54','55','56','57','58','59','60','61','62'];
+// ── Build EMV string ──────────────────────────────────────
+function buildEMV(fields) {
+  const ORDER = [
+    '00','01','26','27','28','29','30','31','32','33','34',
+    '35','36','37','38','39','40','41','42','43','44','51',
+    '52','53','54','55','56','57','58','59','60','61','62'
+  ];
   let s = '';
-  for (const t of O) if (f[t]!=null) s += t+String(f[t].length).padStart(2,'0')+f[t];
-  s += '6304'; return s+crc16(s);
+  for (const t of ORDER) {
+    if (fields[t] != null) {
+      s += t + String(fields[t].length).padStart(2, '0') + fields[t];
+    }
+  }
+  s += '6304';
+  return s + crc16(s);
 }
 
+// ── Konversi statis → dinamis ─────────────────────────────
 function toDynamic(nominal, note) {
   const f = parseEMV(STATIC_QRIS);
-  f['01']='12'; f['54']=nominal.toString(); if (!f['53']) f['53']='360';
-  if (note) { const n=note.substring(0,25); f['62']='08'+String(n.length).padStart(2,'0')+n; }
-  else delete f['62'];
+  f['01'] = '12';                        // ubah ke dinamis
+  f['54'] = nominal.toString();          // set nominal
+  if (!f['53']) f['53'] = '360';         // currency IDR
+  if (note) {
+    const n = note.substring(0, 25);
+    f['62'] = '08' + String(n.length).padStart(2, '0') + n;
+  } else {
+    delete f['62'];
+  }
   return buildEMV(f);
 }
 
-function fmtRp(n) { return 'Rp '+n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.'); }
-function rawAmount() { return parseInt(document.getElementById('amountInput').value.replace(/\./g,''))||0; }
+// ── Helpers ───────────────────────────────────────────────
+function fmtRp(n) {
+  return 'Rp ' + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
+function rawAmount() {
+  return parseInt(document.getElementById('amountInput').value.replace(/\./g, '')) || 0;
+}
 
 function formatAmount(el) {
-  const v = el.value.replace(/\D/g,'');
-  el.value = v ? v.replace(/\B(?=(\d{3})+(?!\d))/g,'.') : '';
-  document.querySelectorAll('.preset').forEach(b=>b.classList.remove('on'));
-}
-function setAmount(n) {
-  document.getElementById('amountInput').value = n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.');
-  document.querySelectorAll('.preset').forEach(b=>b.classList.toggle('on',parseInt(b.textContent.replace(/\./g,''))===n));
+  const v = el.value.replace(/\D/g, '');
+  el.value = v ? v.replace(/\B(?=(\d{3})+(?!\d))/g, '.') : '';
+  document.querySelectorAll('.preset').forEach(b => b.classList.remove('on'));
 }
 
+function setAmount(n) {
+  document.getElementById('amountInput').value =
+    n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  document.querySelectorAll('.preset').forEach(b => {
+    b.classList.toggle('on', parseInt(b.textContent.replace(/\./g, '')) === n);
+  });
+}
+
+// ── Generate QRIS ─────────────────────────────────────────
 function generate() {
   const nominal = rawAmount();
   if (!nominal) { showToast('Masukkan nominal terlebih dahulu'); return; }
+
   const note = document.getElementById('noteInput').value.trim();
   generatedString = toDynamic(nominal, note);
 
+  // Render QR utama
   const el = document.getElementById('qrCanvas');
   el.innerHTML = '';
-  new QRCode(el, { text:generatedString, width:200, height:200, colorDark:'#1a1814', colorLight:'#fff', correctLevel:QRCode.CorrectLevel.M });
+  new QRCode(el, {
+    text: generatedString,
+    width: 200, height: 200,
+    colorDark: '#1a1814',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.M
+  });
 
   document.getElementById('displayAmount').textContent = fmtRp(nominal);
   const dn = document.getElementById('displayNote');
-  if (note) { dn.textContent = note; dn.style.display='inline-block'; } else dn.style.display='none';
+  if (note) { dn.textContent = note; dn.style.display = 'inline-block'; }
+  else { dn.style.display = 'none'; }
 
   const sec = document.getElementById('resultSection');
   sec.style.display = 'block';
-  setTimeout(()=>sec.scrollIntoView({behavior:'smooth',block:'nearest'}),100);
+  setTimeout(() => sec.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
 }
 
+// ── Buka modal share ──────────────────────────────────────
 function openModal() {
   if (!generatedString) return;
-  const nominal = rawAmount(), note = document.getElementById('noteInput').value.trim();
+  const nominal = rawAmount();
+  const note = document.getElementById('noteInput').value.trim();
+
+  // QR kecil di preview
   const pq = document.getElementById('previewQR');
   pq.innerHTML = '';
-  new QRCode(pq, { text:generatedString, width:80, height:80, colorDark:'#1a1814', colorLight:'#fff', correctLevel:QRCode.CorrectLevel.M });
+  new QRCode(pq, {
+    text: generatedString,
+    width: 80, height: 80,
+    colorDark: '#1a1814',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.M
+  });
+
   document.getElementById('previewAmount').textContent = fmtRp(nominal);
   const pn = document.getElementById('previewNote');
-  if (note) { pn.textContent=note; pn.style.display='inline-block'; } else pn.style.display='none';
+  if (note) { pn.textContent = note; pn.style.display = 'inline-block'; }
+  else { pn.style.display = 'none'; }
+
   document.getElementById('modalBg').classList.add('show');
 }
-function closeModal() { document.getElementById('modalBg').classList.remove('show'); }
-function closeModalOutside(e) { if (e.target.id==='modalBg') closeModal(); }
 
-// ── Render share image ───────────────────────────────────
+function closeModal() {
+  document.getElementById('modalBg').classList.remove('show');
+}
+
+function closeModalOutside(e) {
+  if (e.target.id === 'modalBg') closeModal();
+}
+
+// ── Render gambar share (canvas) ──────────────────────────
 async function renderShareImage() {
-  const nominal = rawAmount(), note = document.getElementById('noteInput').value.trim();
+  const nominal = rawAmount();
+  const note = document.getElementById('noteInput').value.trim();
   const qrCanvas = document.querySelector('#qrCanvas canvas');
   if (!qrCanvas) throw new Error('QR belum dibuat');
 
-  const W=480, H=560;
+  const W = 480, H = 560;
   const c = document.createElement('canvas');
-  c.width=W; c.height=H;
+  c.width = W; c.height = H;
   const ctx = c.getContext('2d');
 
-  // BG
-  ctx.fillStyle='#f5f2ee'; ctx.fillRect(0,0,W,H);
-  // Green top bar
-  ctx.fillStyle='#2a5c3f'; ctx.fillRect(0,0,W,4);
+  // Background
+  ctx.fillStyle = '#f5f2ee';
+  ctx.fillRect(0, 0, W, H);
 
-  // Header text
-  ctx.textAlign='center';
-  ctx.fillStyle='#9a948e'; ctx.font='13px DM Sans,sans-serif';
-  ctx.fillText('GENERATOR QRIS DINAMIS', W/2, 44);
-  ctx.fillStyle='#1a1814'; ctx.font='italic 32px Georgia,serif';
-  ctx.fillText('Asep Prayogi', W/2, 82);
-  ctx.fillStyle='#9a948e'; ctx.font='14px DM Sans,sans-serif';
-  ctx.fillText('Edukasi · Simalungun', W/2, 104);
+  // Garis hijau atas
+  ctx.fillStyle = '#2a5c3f';
+  ctx.fillRect(0, 0, W, 4);
 
-  // Divider
-  ctx.strokeStyle='#e8e3de'; ctx.lineWidth=1;
-  ctx.beginPath(); ctx.moveTo(40,122); ctx.lineTo(W-40,122); ctx.stroke();
+  // Teks header
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#9a948e';
+  ctx.font = '500 12px sans-serif';
+  ctx.fillText('PENGINGAT PEMBAYARAN', W / 2, 42);
 
-  // QR
-  const qrImg = new Image(); qrImg.src = qrCanvas.toDataURL('image/png');
-  await new Promise(r=>{qrImg.onload=r;});
-  const qS=220, qX=(W-qS)/2, qY=140;
-  ctx.shadowColor='rgba(0,0,0,0.07)'; ctx.shadowBlur=16;
-  ctx.fillStyle='#fff'; roundRect(ctx,qX-16,qY-16,qS+32,qS+32,12); ctx.fill();
-  ctx.shadowBlur=0;
-  ctx.drawImage(qrImg,qX,qY,qS,qS);
+  ctx.fillStyle = '#1a1814';
+  ctx.font = 'italic 30px Georgia, serif';
+  ctx.fillText('Asep Prayogi', W / 2, 78);
 
-  // Amount
-  ctx.fillStyle='#1a1814'; ctx.font='italic 34px Georgia,serif';
-  ctx.fillText(fmtRp(nominal), W/2, qY+qS+50);
+  ctx.fillStyle = '#9a948e';
+  ctx.font = '13px sans-serif';
+  ctx.fillText('Simalungun', W / 2, 98);
 
-  // Note pill
+  // Garis pembatas
+  ctx.strokeStyle = '#e8e3de';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(40, 116);
+  ctx.lineTo(W - 40, 116);
+  ctx.stroke();
+
+  // QR code
+  const qrImg = new Image();
+  qrImg.src = qrCanvas.toDataURL('image/png');
+  await new Promise(r => { qrImg.onload = r; });
+
+  const qS = 220, qX = (W - qS) / 2, qY = 134;
+
+  // Frame putih QR
+  ctx.shadowColor = 'rgba(0,0,0,0.07)';
+  ctx.shadowBlur = 16;
+  ctx.fillStyle = '#ffffff';
+  roundRect(ctx, qX - 16, qY - 16, qS + 32, qS + 32, 12);
+  ctx.fill();
+  ctx.shadowBlur = 0;
+
+  ctx.drawImage(qrImg, qX, qY, qS, qS);
+
+  // Nominal
+  ctx.fillStyle = '#1a1814';
+  ctx.font = 'italic 34px Georgia, serif';
+  ctx.fillText(fmtRp(nominal), W / 2, qY + qS + 50);
+
+  // Catatan
   if (note) {
-    ctx.font='13px DM Sans,sans-serif';
-    const tw=ctx.measureText(note).width, px=16;
-    const rx=W/2-tw/2-px, ry=qY+qS+64;
-    ctx.fillStyle='#eef4f0'; roundRect(ctx,rx,ry,tw+px*2,28,14); ctx.fill();
-    ctx.fillStyle='#2a5c3f'; ctx.fillText(note,W/2,ry+19);
+    ctx.font = '13px sans-serif';
+    const tw = ctx.measureText(note).width;
+    const px = 16, ry = qY + qS + 64;
+    const rx = W / 2 - tw / 2 - px;
+    ctx.fillStyle = '#eef4f0';
+    roundRect(ctx, rx, ry, tw + px * 2, 28, 14);
+    ctx.fill();
+    ctx.fillStyle = '#2a5c3f';
+    ctx.fillText(note, W / 2, ry + 19);
   }
 
   // Footer
-  ctx.fillStyle='#b0a89e'; ctx.font='12px DM Sans,sans-serif';
-  ctx.fillText('Scan untuk membayar · Berlaku di semua e-wallet & bank', W/2, H-24);
+  ctx.fillStyle = '#b0a89e';
+  ctx.font = '12px sans-serif';
+  ctx.fillText('Scan untuk membayar via QRIS', W / 2, H - 30);
+  ctx.fillText('Berlaku di semua e-wallet & bank', W / 2, H - 12);
 
   return c;
 }
 
-function roundRect(ctx,x,y,w,h,r){
-  ctx.beginPath(); ctx.moveTo(x+r,y);
-  ctx.lineTo(x+w-r,y); ctx.arcTo(x+w,y,x+w,y+r,r);
-  ctx.lineTo(x+w,y+h-r); ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
-  ctx.lineTo(x+r,y+h); ctx.arcTo(x,y+h,x,y+h-r,r);
-  ctx.lineTo(x,y+r); ctx.arcTo(x,y,x+r,y,r);
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y); ctx.arcTo(x + w, y, x + w, y + r, r);
+  ctx.lineTo(x + w, y + h - r); ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
+  ctx.lineTo(x + r, y + h); ctx.arcTo(x, y + h, x, y + h - r, r);
+  ctx.lineTo(x, y + r); ctx.arcTo(x, y, x + r, y, r);
   ctx.closePath();
 }
 
+// ── Dapatkan File gambar ──────────────────────────────────
 async function getImageFile() {
-  const nominal = rawAmount();
   const canvas = await renderShareImage();
-  const blob = await new Promise(r=>canvas.toBlob(r,'image/png'));
-  return new File([blob], `QRIS-AsepPrayogi-${nominal}.png`, {type:'image/png'});
+  const blob = await new Promise(r => canvas.toBlob(r, 'image/png'));
+  return new File([blob], 'QRIS-AsepPrayogi-' + rawAmount() + '.png', { type: 'image/png' });
 }
 
+// ── Pesan teks untuk share ────────────────────────────────
 function buildMsg() {
-  const nominal = rawAmount(), note = document.getElementById('noteInput').value.trim();
-  let msg = `Pembayaran ke *Asep Prayogi*\nNominal: *${fmtRp(nominal)}*`;
-  if (note) msg += `\nCatatan: ${note}`;
-  msg += `\nEdukasi · Simalungun`;
+  const nominal = rawAmount();
+  const note = document.getElementById('noteInput').value.trim();
+  let msg = 'Pengingat Pembayaran\n\n';
+  msg += 'Halo, mohon segera lakukan pembayaran ke *Asep Prayogi*.\n\n';
+  msg += 'Nominal: *' + fmtRp(nominal) + '*';
+  if (note) msg += '\nCatatan: ' + note;
+  msg += '\n\nSilakan scan QRIS terlampir. Terima kasih.';
   return msg;
 }
 
-// ── Share to specific app ────────────────────────────────
-async function shareToApp(target) {
-  if (target==='copy') {
-    navigator.clipboard.writeText(generatedString).then(()=>{ closeModal(); showToast('String QRIS disalin'); });
-    return;
-  }
+// ── Tombol Bagikan — pakai Web Share API ──────────────────
+async function doShare() {
+  const nominal = rawAmount();
+  try {
+    const file = await getImageFile();
+    const msg = buildMsg();
 
-  const file = await getImageFile();
-  const msg = buildMsg();
+    // Web Share API dengan file (Android Chrome, iOS Safari)
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({
+        files: [file],
+        text: msg,
+        title: 'QRIS ' + fmtRp(nominal)
+      });
+      closeModal();
+      return;
+    }
 
-  // Try Web Share API with file (works on mobile Chrome/Safari)
-  if (target !== 'download' && navigator.canShare && navigator.canShare({files:[file]})) {
+    // Fallback: download gambar + buka share text
+    downloadFile(file);
+    showToast('Gambar disimpan — lampirkan ke aplikasi pilihan');
+    closeModal();
+
+  } catch (e) {
+    if (e.name === 'AbortError') return; // user batal
+    // Fallback jika error
     try {
-      await navigator.share({files:[file], text:msg, title:`QRIS ${fmtRp(rawAmount())}`});
-      closeModal(); return;
-    } catch(e) { if (e.name==='AbortError') return; }
+      const file = await getImageFile();
+      downloadFile(file);
+      showToast('Gambar disimpan');
+    } catch (_) {}
+    closeModal();
   }
-
-  // Fallback: download image then open app
-  const url = URL.createObjectURL(file);
-  const a = document.createElement('a');
-  a.download = file.name; a.href = url; a.click();
-  URL.revokeObjectURL(url);
-
-  if (target==='whatsapp') {
-    setTimeout(()=>window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank'), 500);
-    showToast('QR disimpan → lampirkan ke WA');
-  } else if (target==='telegram') {
-    setTimeout(()=>window.open('https://t.me/share/url?url=&text='+encodeURIComponent(msg),'_blank'), 500);
-    showToast('QR disimpan → lampirkan ke Telegram');
-  } else {
-    showToast('Gambar disimpan');
-  }
-  closeModal();
 }
 
-// ── Native share sheet ───────────────────────────────────
-async function nativeShare() {
-  const file = await getImageFile();
-  const msg = buildMsg();
-  if (navigator.canShare && navigator.canShare({files:[file]})) {
-    try {
-      await navigator.share({files:[file], text:msg, title:`QRIS ${fmtRp(rawAmount())}`});
-      closeModal(); return;
-    } catch(e) { if (e.name==='AbortError') return; }
-  }
-  // Fallback
-  const url = URL.createObjectURL(file);
-  const a = document.createElement('a'); a.download=file.name; a.href=url; a.click();
-  URL.revokeObjectURL(url);
-  showToast('Browser tidak support share langsung — gambar disimpan');
+// ── Tombol Simpan saja ─────────────────────────────────────
+function saveOnly() {
   closeModal();
+  downloadQR();
+}
+
+// ── Download helper ───────────────────────────────────────
+function downloadFile(file) {
+  const url = URL.createObjectURL(file);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = file.name;
+  a.click();
+  URL.revokeObjectURL(url);
 }
 
 async function downloadQR() {
-  const file = await getImageFile();
-  const url = URL.createObjectURL(file);
-  const a = document.createElement('a'); a.download=file.name; a.href=url; a.click();
-  URL.revokeObjectURL(url);
-  showToast('Gambar disimpan');
+  try {
+    const file = await getImageFile();
+    downloadFile(file);
+    showToast('Gambar disimpan');
+  } catch (e) {
+    showToast('Gagal membuat gambar');
+  }
 }
 
-function copyString() {
-  if (!generatedString) return;
-  navigator.clipboard.writeText(generatedString).then(()=>showToast('String QRIS disalin'));
-}
-
+// ── Toast ─────────────────────────────────────────────────
 function showToast(msg) {
   const t = document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
-  clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2500);
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 2600);
 }
 </script>
 </body>
